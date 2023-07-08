@@ -4,7 +4,7 @@ Postgres is an object relational database that is just as fast as MySQL that adh
 Postgres is normally the best option when extensibility, scalability and data integrity are most important to you. 
 
 After Installation
-1. The difference between Windows / Linux and Mac is that on Mac you’ll have a username database along with the postgres database
+1. The difference between Windows / Linux and Mac is that on Mac youâ€™ll have a username database along with the postgres database
 2. PGAdmin4 : Can connect to and edit / view / change databases both locally and remote 
 01:13 What is a Database
 A database is data that is structured into rows and columns like a spreadsheet. To receive or change data in a database you send it commands called queries. The database in turn returns a result based on that request.
@@ -55,7 +55,7 @@ Serial : Whole numbers that also auto increment. Always used for column ids.
 1. Smallserial : 1 to 32,767
 2. Serial : 1 to 2147483647
 3. Bigserial : 1 to 9223372036854775807
-Integer : Whole numbers only Always used when you don’t need a decimal
+Integer : Whole numbers only Always used when you donâ€™t need a decimal
 1. Smallint : -32,768 to 32, 767
 2. Integer : -2,147,583,648 to 2,174,483,647
 3. Bigint : -9223372036854775808 to 9223372036854775807
@@ -63,7 +63,7 @@ Floats
 1. Decimal : 131072 whole digits and 16383 after decimal
 2. Numeric : 131072 whole digits and 16383 after decimal
 3. Real : 1E-37 to 1E37 (6 places of precision)
-4. Double Precision : 1E-307 to 1E308 (15 places of precision) Used when decimal doesn’t have to be very precise
+4. Double Precision : 1E-307 to 1E308 (15 places of precision) Used when decimal doesnâ€™t have to be very precise
 5. Float : Same as double
 Boolean
 1. True, 1, t, y, yes, on
@@ -75,20 +75,20 @@ DATE
 1. No matter what format you enter you get this : 1974-12-21
 TIME
 1. TIME WITHOUT TIME ZONE (Default)
-2. ‘1:30:30 PM’:: TIME WITHOUT TIME ZONE -> 13:30:30
+2. â€˜1:30:30 PMâ€™:: TIME WITHOUT TIME ZONE -> 13:30:30
 3. 01:30 AM EST -> 01:30-5:00 (UTC Format)
 4. 01:30 PM PST -> 01:30-8:00
 5. 01:30 PM UTC -> 01:30+00:00
-6. ’01:30:30 PM EST’::TIME WITH TIME ZONE -> 13:30:30-5:00
+6. â€™01:30:30 PM ESTâ€™::TIME WITH TIME ZONE -> 13:30:30-5:00
 TIMESTAMP
-1. ‘DEC-21-1974 1:30 PM EST’::TIMESTAMP WITH TIME ZONE -> 1974-12-21 13:30-5:00
+1. â€˜DEC-21-1974 1:30 PM ESTâ€™::TIMESTAMP WITH TIME ZONE -> 1974-12-21 13:30-5:00
 INTERVAL
 1. Represents a duration of time
-2. ‘1 day’::INTERVAL -> 01:00
-3. ‘1 D 1 H 1 M 1 S’::INTERVAL -> 01:01:01:01
+2. â€˜1 dayâ€™::INTERVAL -> 01:00
+3. â€˜1 D 1 H 1 M 1 Sâ€™::INTERVAL -> 01:01:01:01
 4. You can add and subtract intervals
 5. You can add or subtract intervals from dates
-6. (‘DEC-21-1974 1:30 PM EST’::TIMESTAMP WITH TIME ZONE) – (‘1 D’::INTERVAL)
+6. (â€˜DEC-21-1974 1:30 PM ESTâ€™::TIMESTAMP WITH TIME ZONE) â€“ (â€˜1 Dâ€™::INTERVAL)
 Also Currency, Binary, JSON, Range, Geometric, Arrays, XML, UUID
 Data Constraints 
 Some additional data constraints include Not Null. If you mark data as not null that means it must have a value when a new row of data is created. Default designates a default value when a row is created without data. 
@@ -107,8 +107,8 @@ Right Click sales_db -> Query Tool
 CREATE TYPE sex_type as enum
 ('M', 'F');
 It is located in Types
-Alter Enum to add ‘O’ for other
-Right Click sex_type -> Properties -> Definition -> + (Add Row) and type ‘O’
+Alter Enum to add â€˜Oâ€™ for other
+Right Click sex_type -> Properties -> Definition -> + (Add Row) and type â€˜Oâ€™
 
 20:48 Change Column Data Type
 alter table customer
@@ -144,7 +144,7 @@ id SERIAL PRIMARY KEY);
  25:30 Create Product Table SLIDE
 We talked about how a primary key is used to uniquely identify a row in a table. A foreign key is used to identify 1 of a group of possible rows in another table.
 If we create a product table and want to store a value from the product type table we can reference that information using a foreign key. 
-When creating a foreign key it has an integer type instead of a serial type. We can’t use serial because Postgres will try to assign a value to serial types.
+When creating a foreign key it has an integer type instead of a serial type. We canâ€™t use serial because Postgres will try to assign a value to serial types.
 
  -- type_id references rows in the table product_id and the row we are referencing matches the id
 -- column
@@ -929,7 +929,7 @@ Views are select statements thats result is stored in your database. Let's creat
 CREATE VIEW purchase_order_overview AS
 SELECT sales_order.purchase_order_number, customer.company, 
 sales_item.quantity, product.supplier, product.name, item.price, 
---Can’t use total if you want this to be updated Fix Below
+--Canâ€™t use total if you want this to be updated Fix Below
 (sales_item.quantity * item.price) AS Total,
 --Remove concat if you want this to be updatable 
 CONCAT(sales_person.first_name, ' ', sales_person.last_name) AS Salesperson
@@ -946,7 +946,7 @@ ON product.id = item.product_id
 JOIN sales_person
 ON sales_person.id = sales_order.sales_person_id
 ORDER BY purchase_order_number;
-When data in the database is updated so is the view. You can use the view in all the same ways you can a regular table. If you want it to be updatable though it can’t include DISTINCT, UNION, Aggregate Functions, GROUP BY or HAVING.
+When data in the database is updated so is the view. You can use the view in all the same ways you can a regular table. If you want it to be updatable though it canâ€™t include DISTINCT, UNION, Aggregate Functions, GROUP BY or HAVING.
  
 SELECT * FROM purchase_order_overview;
 
@@ -987,7 +987,7 @@ $body$
 LANGUAGE SQL
 
 1:50:06 Functions that Return Void
-Check if sales_person has a state assigned and if not change it to ‘PA’
+Check if sales_person has a state assigned and if not change it to â€˜PAâ€™
 CREATE OR REPLACE FUNCTION fn_update_employee_state() 
 RETURNS void as
 $body$
@@ -1498,8 +1498,8 @@ SELECT fn_get_supplier_value('Nike');
 3:01:34
 ----- Stored Procedures -----
 Stored Procedures can be executed by an application that has access to your database. For example PHP could call for this code to execute.
-Stored procedures can also execute transactions, which you cannot do with functions. Procedures however traditionally can’t return values, but there is a work around with INOUT.
-Procedures also can’t be called by Select. You can execute them with EXECUTE with parameters, or with CALL. If a SP doesn’t have parameters it is called static and those with parameters are called dynamic. 
+Stored procedures can also execute transactions, which you cannot do with functions. Procedures however traditionally canâ€™t return values, but there is a work around with INOUT.
+Procedures also canâ€™t be called by Select. You can execute them with EXECUTE with parameters, or with CALL. If a SP doesnâ€™t have parameters it is called static and those with parameters are called dynamic. 
 CREATE OR REPLACE PROCEDURE procedure_name(parameters)
 AS
 $body$
@@ -1557,7 +1557,7 @@ pr_debt_paid(
 ----- TRIGGERS -----
 Triggers are used when you want an action to automatically occur when an event occurs. Common events include the commands insert, update, delete and truncate. Triggers can also be associated with tables, foreign tables or views. 
 Triggers can execute before or after an event executes. Triggers also can execute instead of another event.
-You can put multiple triggers on a table and they execute in alphabetical order. They can’t be triggered manually by a user. Triggers also can’t receive parameters.
+You can put multiple triggers on a table and they execute in alphabetical order. They canâ€™t be triggered manually by a user. Triggers also canâ€™t receive parameters.
 If a Trigger is Row Level the Trigger is called for each row that is modified. If a Trigger is Statement level it will execute once regardless of the number of rows. 
 When can you perform certain actions with triggers SLIDE
 This table shows what triggers can execute based on when they are to execute. 
@@ -1573,7 +1573,7 @@ Pros of Triggers SLIDE
 Cons of Triggers SLIDE
 * Triggers add execution overhead
 * Nested / recursive trigger errors can be hard to debug
-* Invisible to the client which can cause confusion when actions aren’t allowed
+* Invisible to the client which can cause confusion when actions arenâ€™t allowed
 
 -- Create trigger function
 CREATE FUNCTION trigger_function()
@@ -1691,6 +1691,9 @@ WHERE id = 2;
 
 -- Drop triggers
 DROP EVENT TRIGGER tr_block_weekend_changes;
+
+the latest drop trigger code 
+DROP TRIGGER tr_block_weekend_changes on distributor;
 
 3:29:25
 ----- CURSORS -----
